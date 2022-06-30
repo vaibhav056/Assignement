@@ -1,0 +1,37 @@
+{% load static %}
+<!DOCTYPE HTML>
+<html lang="en" >
+<html>
+<head>
+  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'myapp/login_style.css' %}">
+</head>
+
+<body class="body">
+	
+<div class="login-page">
+  <div class="form">
+
+    <form method="POST" action=".">
+      <center> <h1>Login</h1></center>
+      {% csrf_token %}
+        {% if error %}
+          <p id="messages" style="color:red;">{{error}}</p>
+        {% endif %}
+      {{form.phonenumber}}
+      {{form.password}}
+      <br>
+      <button>LOGIN</button>
+      <p class="message"></p>
+    </form>
+
+    <form class="login-form">
+      <button type="button" onclick="window.location.href='/signup/'">SIGN UP</button>
+    </form>
+  </div>
+</div>
+</body>
+</html>
+

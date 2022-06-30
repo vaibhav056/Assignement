@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <html>
+    <head>
+      <title>Sign Up</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta charset="utf-8" />
+      <link rel="stylesheet" type="text/css" href="{% static 'myapp/signup_style.css' %}" />
+    </head>
+
+    <body class="body">
+
+      <div class="login-page">
+        <div class="form">
+          <form method="POST" action=".">
+            <center><h1>Signup</h1></center>
+            {% csrf_token %}
+            {% if error %}
+                <p style="margin-top:30px;margin-left:30px;color:red;">{{error}}</p>
+            {% endif %}
+            {{form.full_name}}
+            {{form.phonenumber}}
+            {{form.email}}
+            {{form.password1}}
+            {{form.password2}}
+            <br>
+            <button>
+              SIGN UP
+            </button>
+          </form>
+           <button type="button" onclick="window.location.href='/login/'">
+              Login
+          </button>
+        </div>
+      </div>
+    </body>
+   
+  </html>
+</html>
+
+<script type="text/javascript">
+   function myfunc(imdb){
+      $.ajax({
+        url:"{% url 'myapp:remove' %}",
+        dataType:'json',
+        data:{"imdb":imdb},
+        success: function(data){
+          if(data.status){
+            alert("Removed successfully");
+            location.reload();
+          }
+        },
+      })
+    }
+</script>
